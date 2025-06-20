@@ -49,21 +49,46 @@ Isso irá criar uma cópia do projeto na sua conta, permitindo que você trabalh
 
 #### Passo 2
 
-Clone o repositório para a sua máquina local usando o comando abaixo, substituindo `<USER>`> pelo seu nome de usuário no GitHub:
+Clone o seu próprio repositório, criado a partir do fork, para a sua máquina local. Para isso, use o comando abaixo, substituindo <`USER`> pelo **seu nome de usuário do GitHub**:
 
 ```bash
 git clone https://github.com/<USER>/adote-facil.git
 ```
 
-Em seguida, no diretório clonado, copie o código a seguir para um arquivo com o seguinte nome e caminho: `.github/workflows/experimento-ci-cd.yml`. Isto é, crie diretórios `.github` e depois `workflows` e salve o código abaixo no arquivo `experimento-ci-cd.yml`. 
+Em seguida, dentro do diretório do repositório que você clonou, crie o arquivo `.github/workflows/experimento-ci-cd.yml` com o conteúdo fornecido abaixo. Para isso, primeiro crie os diretórios `.github` e, dentro dele, o diretório `workflows`, e então salve o arquivo `experimento-ci-cd.yml` nessa última pasta. 
 
-**Linux:** Utilize os comandos os comandos `mv`, `cd`, `ls`, `mkdir` e `touch` no seu terminal ou use a GUI para criar os diretórios e arquivo.
+A seguir, mostramos como criar as pastas e o arquivo tanto no Windows quanto no Linux. O conteúdo que deve ser inserido no arquivo experimento-ci-cd.yml está logo abaixo.
+
+**Linux**: você pode usar os comandos `mkdir` para criar os diretórios, `touch` para criar o arquivo, e outros comandos como `cd`, `ls` e `mv` para navegar e manipular os arquivos. Alternativamente, pode usar a interface gráfica (GUI) do seu sistema para criar as pastas e o arquivo.
+
+```bash
+# Entre no diretório do repositório clonado
+cd nome-do-seu-repositorio
+
+# Crie o diretório .github e o subdiretório workflows (com -p para criar pais se não existirem)
+mkdir -p .github/workflows
+
+# Navegue até o diretório workflows
+cd .github/workflows
+
+# Crie o arquivo experimento-ci-cd.yml vazio
+touch experimento-ci-cd.yml
+
+# Agora, você pode abrir esse arquivo no editor de texto de sua preferência, por exemplo:
+nano experimento-ci-cd.yml
+# ou
+vim experimento-ci-cd.yml
+
+# Cole o conteúdo do pipeline CI/CD dentro desse arquivo e salve
+```
 
 **Windows:**
 
+Acesse o diretório do repositório que foi clonado após o fork e crie, dentro dele, a pasta `.github` e, em seguida, a subpasta `workflows`.
+
 ![Captura de Tela (18)](https://github.com/user-attachments/assets/40147beb-a254-4642-b7c5-0b8e8f493757)
 
-No VSCode ou na sua IDE de preferência, clique com o botaão direito sobre o diretório `workflow` e selecione a opção New File. Então, crie o arquivo experimento-ci-cd.yml
+No VSCode ou na sua IDE de preferência, clique com o botão direito sobre o diretório `workflow` e selecione a opção New File. Então, crie o arquivo experimento-ci-cd.yml
 
 ![image](https://github.com/user-attachments/assets/ed77c027-a986-4dbb-bb27-f22e97fab558)
 
@@ -173,15 +198,15 @@ jobs:
           path: adote-facil-projeto.zip  # Caminho do arquivo que será enviado
 ```
 
-Esse arquivo ativa e configura o GHA para toda vez que ocorrer um evento `pull_request` tendo como alvo a branch principal (main) do repositório. Ele realiza três jobs:
+Esse arquivo configura o GitHub Actions (GHA) para ser executado sempre que um evento do tipo `pull_request` for direcionado para a branch principal (`main`) do repositório. O workflow está dividido em três jobs, que representam as etapas da automação:
 
-- roda os testes (test)
-- faz a compilação (build)
-- realiza uma entrega (delivery)
+- **test**: executa os testes do sistema; 
+- **build**: realiza o processo de compilação do projeto;
+- **delivery**: simula uma entrega (deploy) da aplicação.
 
 #### Passo 3
 
-Entre no diretório criado (use o comando cd no terminal) ".../adote-facil/", realize um `add`, um `commit` e um `git push`, ou seja:
+Acesse o diretório do repositório clonado (use o comando `cd` no terminal para entrar na pasta `.../adote-facil/`) e, em seguida, adicione, registre e envie as alterações para o GitHub com os seguintes comandos:
 
 ```bash
 git add --all
@@ -191,11 +216,13 @@ git push origin main
 
 ## Tarefa #2: Configurar GitHub Secrets
 
-Em muitos projetos, utilizamos variáveis sensíveis (como senhas e chaves) que não devem ser expostas no código. Para isso, o GitHub Actions permite o uso de Secrets — variáveis de ambiente criptografadas e seguras. Vamos configurar os Secrets para armazenar os dados de conexão com o banco de dados:
+Em muitos projetos, é comum utilizar variáveis sensíveis — como senhas, tokens e chaves de acesso — que não devem ser incluídas diretamente no código por questões de segurança. Para lidar com isso, o GitHub Actions oferece o recurso chamado *Secrets*, que permite armazenar variáveis de ambiente de forma criptografada e segura.
+
+A seguir, vamos configurar os Secrets para armazenar as informações de conexão com o banco de dados:
 
 #### Passo 1
 
-Acesse seu repositório adote-facil no GitHub, clique em Settings, depois vá em: **Secrets and variables** → **Actions** → **New repository secret**
+Acesse o seu repositório adote-facil no GitHub, clique na aba Settings (configurações) na parte superior do repositório. Em seguida, no menu lateral, vá em **Secrets and variables > Actions** e clique no botão **New repository secret** para adicionar um novo segredo.
 
 ![image](https://github.com/user-attachments/assets/6a78aaca-23a4-4047-a88d-59f3283f885b)
 ![image](https://github.com/user-attachments/assets/348907d6-765a-4dd3-bb1d-a0f5d4ae351a)
@@ -217,23 +244,28 @@ Esses valores simulam um cenário de acesso ao banco de dados. Eles serão utili
 
 ## Tarefa #3: Criando um Pull Request (PR) com bug
 
-Este caso simula um cenário em que o código contém um bug, fazendo com que o pipeline CI/CD falhe e rejeite o merge na main.
+Este caso simula um cenário em que o código possui um erro (bug), o que faz com que o pipeline de CI/CD falhe. Como resultado, o GitHub bloqueia automaticamente o *merge* na branch `main`, impedindo que código com falhas seja integrado à versão principal do projeto.
 
 #### Passo 1
 
-Vamos simular que a função de atualizar o e-mail do usuário está retornando um valor diferente do esperado. Para isso, edite o arquivo /backend/src/services/user/update-user-spec.ts e:
+Vamos simular que o teste da função responsável por atualizar o e-mail do usuário está falhando — ou seja, está retornando um valor diferente do esperado.
 
-- Comente a linha 92.
-- Logo abaixo, insira:
+No seu editor de código, localize o arquivo `/backend/src/services/user/update-user-spec.ts` (conforme mostrado na imagem abaixo) e faça as seguintes alterações:
+
+![image](https://github.com/user-attachments/assets/e878aec6-e5a4-46ac-9d8a-bcab226fd1db)
+
+- Comente a linha original do teste (a linha 92 do arquivo), que contém o comando expect(...).
+
+- Logo abaixo, insira a seguinte linha de teste que utiliza um e-mail incorreto:
 ```diff
 expect(result).toEqual(Success.create({ ...updatedUser, email: 'email-errado@mail.com' }))
 ````
-![image](https://github.com/user-attachments/assets/e878aec6-e5a4-46ac-9d8a-bcab226fd1db)
+
 ![image](https://github.com/user-attachments/assets/8f4e723d-b29b-4f26-b06b-60bf98cc2636)
 
 #### Passo 2
 
-Após modificar o código, você deve criar uma novo branch, realizar um `commit` e um `push`:
+Após fazer as modificações no código, crie uma nova branch, faça o commit das alterações e envie para o repositório remoto com os seguintes comandos:
 
 ```bash
 git checkout -b bug
@@ -244,24 +276,24 @@ git push origin bug
 
 #### Passo 3
 
-Em seguida, crie um Pull Request (PR) com suas modificações. Para isso, acesse no navegador a seguinte URL, substituindo <USER> pelo seu nome de usuário no GitHub: `https://github.com/<USER>/adote-facil/compare/main...bug`.
+Em seguida, crie um Pull Request (PR) com suas modificações. Para isso, acesse no navegador a seguinte URL, substituindo `<USER>` pelo seu nome de usuário no GitHub: `https://github.com/<USER>/adote-facil/compare/main...bug`.
 
-Nessa página, você poderá revisar as alterações feitas. Após conferir, clique no botão Create pull request. Na janela que se abrirá, insira uma breve descrição do PR e confirme a criação clicando novamente em Create pull request.
+Nessa página, revise as alterações feitas. Após a verificação, clique no botão Create pull request. Na janela que abrir, adicione uma breve descrição do PR e confirme a criação clicando novamente em **Create pull request**.
 
 ![image](https://github.com/user-attachments/assets/1ad57596-5f2f-4af7-8334-027c528043ad)
 
-Assim que o PR for criado, o pipeline configurado no arquivo experimento-ci-cd.yml será automaticamente iniciada pelo GitHub Actions. Como introduzimos um bug, os testes irão falhar — essa falha será exibida na tela de execução do pipeline. Você pode acompanhar o status da execução acessando a aba Actions do seu repositório.
+Assim que o PR for criado, o pipeline configurado no arquivo `experimento-ci-cd.yml` será automaticamente acionado pelo GitHub Actions. Como inserimos um bug, os testes irão falhar — essa falha será exibida na página de execução do pipeline. Você pode acompanhar o status do processo acessando a aba Actions do seu repositório.
 
-Em suma, o servidor de CI/CD detectou automaticamente um problema no código enviado, impedindo que ele seja integrado ao branch principal do projeto. 
+Em resumo, o servidor de CI/CD detectou automaticamente um problema no código enviado, impedindo sua integração ao branch principal do projeto.
 
 ![image](https://github.com/user-attachments/assets/b2669050-3b83-4f00-9cf4-3410e451ab84)
 
 
 ## Tarefa #4: Criando um Pull Request (PR) com a correção
 
-Vamos restaurar o arquivo ao seu estado original. Para isso, descomente a linha 92 e exclua a linha 93. Assim, quando criarmos um novo PR, os testes serão executados com sucesso, sem apresentar falhas.
+Vamos restaurar o arquivo ao seu estado original. Para isso, descomente a linha 92 e remova a linha 93. Assim, ao criar um novo PR, os testes serão executados com sucesso, sem apresentar falhas.
 
-Após modificar o código, salve o arquivo e crie um novo branch para consertar o bug, realize um `add`, um `commit` e um `push`:
+Após fazer essas alterações, salve o arquivo e crie uma nova branch para corrigir o bug. Em seguida, execute os comandos abaixo para adicionar, commitar e enviar as mudanças para o repositório remoto:
 
 ```bash
 git checkout -b fixture
@@ -269,16 +301,18 @@ git add --all
 git commit -m "Consertando a função Test"
 git push origin fixture
 ```
-Insira seu nome de usuário e senha (Token) do GH se for requerido.
+Caso solicitado, informe seu nome de usuário e o token que criamos na *Tarefa 1* para autenticação.
 
-Em seguida, crie novamente um Pull Request (PR) com a correção. Para isso, acesse no navegador a seguinte URL, substituindo <USER> pelo seu nome de usuário no GitHub: `https://github.com/<USER>/adote-facil/compare/main...fixture`.
+Em seguida, crie novamente um novo Pull Request (PR) com a correção. Para isso, acesse no navegador a seguinte URL, substituindo <USER> pelo seu nome de usuário no GitHub: `https://github.com/<USER>/adote-facil/compare/main...fixture`.
 
 ![image](https://github.com/user-attachments/assets/db547d8a-a3ee-4a3c-81ad-69aa76ebac2a)
 
-Nessa página, você poderá revisar as alterações realizadas. Depois, clique no botão Create pull request no canto superior direito da tela. Na janela que abrir, insira uma breve descrição do PR e confirme a criação clicando no botão Create pull request no canto inferior direito. Você pode acompanhar o andamento da pipeline acessando a aba Actions do repositório e selecionando o nome do PR em execução.
+Nessa página, revise as alterações realizadas. Em seguida, clique no botão Create pull request, no canto superior direito da tela. Na janela que abrir, insira uma breve descrição do PR e confirme a criação clicando novamente no botão **Create pull request**, no canto inferior direito.
+
+Você pode acompanhar o andamento do pipeline acessando a aba **Actions** do repositório e selecionando o nome do PR em execução.
 
 ![image](https://github.com/user-attachments/assets/3b7ba313-04c5-415f-8097-946cb7f5a5c8)
 
-Após a criação do PR, o GitHub Actions iniciará automaticamente o pipeline, que executará os testes, realizará o build e fará a entrega do artefato gerando um arquivo .zip do projeto. Quando concluído, o arquivo .zip estará disponível para download.
+Após a criação do PR, o GitHub Actions iniciará automaticamente o pipeline, que executará os testes, realizará o build e gerará um arquivo **.zip** do projeto. Ao finalizar, o arquivo **.zip** estará disponível para download.
 
 # FIM
