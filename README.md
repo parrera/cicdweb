@@ -42,7 +42,7 @@ Dê um nome para ele e marque as opções `repo` e `workflow` para gerar o Token
 
 Por fim, role a página até o final e clique em **Generate token**.
 
-![image](https://github.com/user-attachments/assets/ca85fdda-ab0b-4b32-a947-6a4fab81035d)
+![image](https://github.com/user-attachments/assets/60c0d608-07a3-4aa8-b7df-54eb792b4e1e)
 
 Como este é apenas um experimento, você pode copiar e salvar o token em um bloco de notas. Ele será necessário quando o GitHub solicitar sua senha em operações protegidas, como clonar, fazer push ou pull.
 
@@ -56,7 +56,7 @@ Isso irá criar uma cópia do projeto na sua conta, permitindo que você trabalh
 
 #### Passo 2
 
-Clone o seu próprio repositório, criado a partir do fork, para a sua máquina local. Para isso, use o comando abaixo, substituindo <`USER`> pelo **seu nome de usuário do GitHub**:
+Clone o seu próprio repositório, criado a partir do fork, para a sua máquina local. Para isso, use o comando abaixo, substituindo `<USER>` pelo **seu nome de usuário do GitHub**:
 
 ```bash
 git clone https://github.com/<USER>/adote-facil.git
@@ -64,7 +64,7 @@ git clone https://github.com/<USER>/adote-facil.git
 
 Em seguida, dentro do diretório do repositório que você clonou, crie o arquivo `.github/workflows/experimento-ci-cd.yml` com o conteúdo fornecido abaixo. Para isso, primeiro crie os diretórios `.github` e, dentro dele, o diretório `workflows`, e então salve o arquivo `experimento-ci-cd.yml` nessa última pasta. 
 
-A seguir, mostramos como criar as pastas e o arquivo tanto no Windows quanto no Linux. O conteúdo que deve ser inserido no arquivo experimento-ci-cd.yml está logo abaixo.
+A seguir, mostramos como criar as pastas e o arquivo tanto no Windows quanto no Linux. O conteúdo que deve ser inserido no arquivo **experimento-ci-cd.yml** está logo abaixo.
 
 **Linux**: você pode usar os comandos `mkdir` para criar os diretórios, `touch` para criar o arquivo, e outros comandos como `cd`, `ls` e `mv` para navegar e manipular os arquivos. Alternativamente, pode usar a interface gráfica (GUI) do seu sistema para criar as pastas e o arquivo.
 
