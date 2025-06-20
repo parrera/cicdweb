@@ -2,7 +2,7 @@
 
 Este repositório apresenta um roteiro prático para configurar e utilizar um pipeline de **Integração Contínua e Delivery Contínuo (CI/CD)**. O objetivo é simular práticas reais de DevOps no contexto de desenvolvimento web, utilizando o GitHub Actions.
 
-O GitHub Actions permite automatizar fluxos de trabalho (workflows) como testes, builds e deploys. Neste tutorial, aplicaremos esses princípios em um cenário semelhante ao de produção.
+O GitHub Actions permite automatizar fluxos de trabalho (workflows) como testes, builds e deploys. Neste tutorial, aplicaremos esses princípios em um cenário semelhante ao de um ambiente de produção.
 
 **Contexto**:  Considere que você faz parte da equipe de desenvolvimento web de uma ONG voltada ao cuidado animal, responsável pelo Adote Fácil, um sistema web para adoção de animais Sua equipe é distribuída geograficamente e é composta por profissionais da área de projeto Web em que cada um está responsável por diferentes partes do sistema. Você percebe que a adoção de metodologias de integração e entrega contínuas neste projeto irá promover diversas melhorias, como: Automatizar a função de um dos contribuintes de analisar os Pull Requests e realizar os Merges, disponibilizando-o para outras funções, elevar o padrão do codigo produzido, incentivar a criação e atualização constante de documentação, permitir a coleta de avaliações dos usuários de forma mais ágil, entre outras vantagens. Cientes desses potenciais ganhos, vocês desenvolveram um guia para a instalação de um ambiente servidor focado nessas práticas de CI/CD.
 
