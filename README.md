@@ -4,7 +4,7 @@ Este repositório apresenta um roteiro prático para configurar e utilizar um pi
 
 O GitHub Actions permite automatizar fluxos de trabalho (workflows) como testes, builds e deploys. Neste tutorial, aplicaremos esses princípios em um cenário semelhante ao de um ambiente de produção.
 
-**Contexto**:  Você faz parte da equipe de desenvolvimento web de uma ONG dedicada ao cuidado animal, responsável pelo sistema Adote Fácil, uma plataforma online para adoção de animais. A equipe é distribuída geograficamente e composta por profissionais especializados em diferentes áreas do projeto web, cada um responsável por módulos distintos do sistema. Diante disso, você identificou que a adoção de metodologias de integração e entrega contínua (CI/CD) neste projeto trará diversas melhorias, como:
+**Contexto**:  Você faz parte da equipe de desenvolvimento web de uma ONG dedicada ao cuidado animal, responsável pelo sistema Adote Fácil, uma plataforma online para adoção de animais. A equipe é distribuída geograficamente e composta por profissionais especializados em diferentes áreas do projeto web, cada um responsável por módulos distintos do sistema. Diante disso, você identificou que a adoção de metodologias de integração e delivery contínuo (CI/CD) neste projeto trará diversas melhorias, como:
 - Automatizar tarefas manuais, como a análise e o merge de Pull Requests, liberando os colaboradores para outras atividades de maior valor;
 - Elevar a qualidade e o padrão do código produzido;
 - Estimular a criação e atualização constante da documentação técnica;
