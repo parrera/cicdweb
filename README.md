@@ -4,7 +4,14 @@ Este repositório apresenta um roteiro prático para configurar e utilizar um pi
 
 O GitHub Actions permite automatizar fluxos de trabalho (workflows) como testes, builds e deploys. Neste tutorial, aplicaremos esses princípios em um cenário semelhante ao de um ambiente de produção.
 
-**Contexto**:  Considere que você faz parte da equipe de desenvolvimento web de uma ONG voltada ao cuidado animal, responsável pelo Adote Fácil, um sistema web para adoção de animais Sua equipe é distribuída geograficamente e é composta por profissionais da área de projeto Web em que cada um está responsável por diferentes partes do sistema. Você percebe que a adoção de metodologias de integração e entrega contínuas neste projeto irá promover diversas melhorias, como: Automatizar a função de um dos contribuintes de analisar os Pull Requests e realizar os Merges, disponibilizando-o para outras funções, elevar o padrão do codigo produzido, incentivar a criação e atualização constante de documentação, permitir a coleta de avaliações dos usuários de forma mais ágil, entre outras vantagens. Cientes desses potenciais ganhos, vocês desenvolveram um guia para a instalação de um ambiente servidor focado nessas práticas de CI/CD.
+**Contexto**:  Você faz parte da equipe de desenvolvimento web de uma ONG dedicada ao cuidado animal, responsável pelo sistema Adote Fácil, uma plataforma online para adoção de animais. A equipe é distribuída geograficamente e composta por profissionais especializados em diferentes áreas do projeto web, cada um responsável por módulos distintos do sistema. Diante disso, você identificou que a adoção de metodologias de integração e entrega contínua (CI/CD) neste projeto trará diversas melhorias, como:
+- Automatizar tarefas manuais, como a análise e o merge de Pull Requests, liberando os colaboradores para outras atividades de maior valor;
+- Elevar a qualidade e o padrão do código produzido;
+- Estimular a criação e atualização constante da documentação técnica;
+- Facilitar a coleta rápida e eficiente de feedbacks dos usuários;
+- E outras vantagens relevantes para o ciclo de desenvolvimento.
+
+Com base nesses benefícios, a equipe elaborou um guia detalhado para a instalação de um ambiente focado na implementação dessas práticas de CI/CD, visando otimizar o fluxo de trabalho e garantir entregas mais ágeis e seguras.
 
 ## Tarefa #1: Configurar o GitHub Actions
 #### Passo 1
@@ -13,15 +20,15 @@ Crie um token de acesso pessoal no GitHub (I) e faça um Fork (II) do projeto **
 
 **(I)** Para criar um token, clique no ícone do seu perfil, localizado no canto superior direito da tela, e selecione **Settings** no menu.
 
-![image](https://github.com/user-attachments/assets/b2861fa7-e874-4f81-8ea8-95a183802456)
+![image](https://github.com/user-attachments/assets/6b849a9d-2737-4cc4-815c-8085d29c4f60)
 
 Role a tela para baixo e clique em **Developer settings**, no canto inferior esquerdo.
 
-![image](https://github.com/user-attachments/assets/fd6f423d-5db5-4f39-b63a-c40aeb20e8c5)
+![image](https://github.com/user-attachments/assets/822c224b-509a-45a6-8db5-3df3fe67c4d2)
 
 No menu que aparecer, clique em **Personal access tokens** e depois em **Tokens classic**. 
 
-![image](https://github.com/user-attachments/assets/6b242dbd-69fd-42a8-b69d-b1cbc6cb8352)
+![image](https://github.com/user-attachments/assets/c3524f42-d63e-4350-ac5d-f620293f47b7)
 
 ![image](https://github.com/user-attachments/assets/44645080-395c-4a8b-a37f-adb8148bb3c1)
 
