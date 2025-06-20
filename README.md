@@ -4,48 +4,52 @@ Este repositório apresenta um roteiro prático para configurar e utilizar um pi
 
 O GitHub Actions permite automatizar fluxos de trabalho (workflows) como testes, builds e deploys. Neste tutorial, aplicaremos esses princípios em um cenário semelhante ao de produção.
 
-**Contexto**:  Considere que você faz parte da equipe de desenvolvimento web de uma ONG voltada ao cuidado animal, responsável pelo Adote Fácil, um sistema web para adoção de animais Sua equipe é distribuída geograficamente e é composta por profissionais da área de projeto Web em que cada um está responsável por diferentes partes do sistema. Você percebe que a adoção de metodologias de integração e entrega contínuas neste projeto irá promover diversas melhorias, como: Automatizar a função de um dos contribuintes de analisar os Pull Requests e realizar os Merges, disponibilizando-o para outras funções, elevar o padrão do codigo produzido, incentivar a criação e atualização constante de documentação, permitir a coleta de avaliações dos usuários de forma mais ágil, entre outras vantagens. Cientes desses potenciais ganhos, vocês desenvolveram um guia para a instalação de um ambiente servidor focado nessas práticas de CI/CD..
+**Contexto**:  Considere que você faz parte da equipe de desenvolvimento web de uma ONG voltada ao cuidado animal, responsável pelo Adote Fácil, um sistema web para adoção de animais Sua equipe é distribuída geograficamente e é composta por profissionais da área de projeto Web em que cada um está responsável por diferentes partes do sistema. Você percebe que a adoção de metodologias de integração e entrega contínuas neste projeto irá promover diversas melhorias, como: Automatizar a função de um dos contribuintes de analisar os Pull Requests e realizar os Merges, disponibilizando-o para outras funções, elevar o padrão do codigo produzido, incentivar a criação e atualização constante de documentação, permitir a coleta de avaliações dos usuários de forma mais ágil, entre outras vantagens. Cientes desses potenciais ganhos, vocês desenvolveram um guia para a instalação de um ambiente servidor focado nessas práticas de CI/CD.
 
 ## Tarefa #1: Configurar o GitHub Actions
 #### Passo 1
 
-Crie um Token pessoal no GitHub (i) e;  faça um Fork (ii) do projeto adote-facil. 
+Crie um token de acesso pessoal no GitHub (I) e faça um Fork (II) do projeto **adote-facil**. 
 
-**(i)** Para criar um Token, clique no ícone do seu perfil, vá em **Settings →**
+**(I)** Para criar um token, clique no ícone do seu perfil, localizado no canto superior direito da tela, e selecione **Settings** no menu.
 
 ![image](https://github.com/user-attachments/assets/b2861fa7-e874-4f81-8ea8-95a183802456)
 
-**Developer settings →**
+Role a tela para baixo e clique em **Developer settings**, no canto inferior esquerdo.
 
 ![image](https://github.com/user-attachments/assets/fd6f423d-5db5-4f39-b63a-c40aeb20e8c5)
 
-**Personal access tokens →**
+No menu que aparecer, clique em **Personal access tokens** e depois em **Tokens classic**. 
 
 ![image](https://github.com/user-attachments/assets/6b242dbd-69fd-42a8-b69d-b1cbc6cb8352)
 
-**Tokens (classic)** →
-
 ![image](https://github.com/user-attachments/assets/44645080-395c-4a8b-a37f-adb8148bb3c1)
 
-**Generate new token (classic)**. 
+No canto superior direito, clique no botão **Generate new token** e escolha **Generate new token (classic)**.
 
 ![image](https://github.com/user-attachments/assets/cafc4d73-2941-40de-a8eb-c111c2beea52)
 
-Dê um nome para ele e marque as opções `repo` e `workflows` para gerar o Token. Gere o token mínimo (7 dias) apenas para este experimento. 
+Dê um nome para ele e marque as opções `repo` e `workflow` para gerar o Token. Gere o token mínimo (7 dias) apenas para este experimento. 
 
 ![image](https://github.com/user-attachments/assets/da72310e-d94c-4ea9-9c9f-7053b286fddd)
 
-Copie e guarde esse código (token) para usar quando o GitHub lhe pedir para usar uma senha (password). 
+Por fim, role a página até o final e clique em **Generate token**.
+
+![image](https://github.com/user-attachments/assets/ca85fdda-ab0b-4b32-a947-6a4fab81035d)
+
+Como este é apenas um experimento, você pode copiar e salvar o token em um bloco de notas. Ele será necessário quando o GitHub solicitar sua senha em operações protegidas, como clonar, fazer push ou pull.
 
 #
 
-**(ii)** Entre no repositório [adote-facil](https://github.com/ArthurEnrique15/adote-facil) e clique no botão **Fork** no canto superior direito na página do projeto no GitHub.
+**(II)** Acesse o repositório [adote-facil](https://github.com/ArthurEnrique15/adote-facil) e clique no botão **Fork**, localizado no canto superior direito da página. 
 
 ![fork](https://github.com/user-attachments/assets/a57143ff-3f79-4d3d-b827-018a7d91d39d)
 
+Isso irá criar uma cópia do projeto na sua conta, permitindo que você trabalhe nele livremente.
+
 #### Passo 2
 
-Clone o repositório para sua máquina local, usando o seguinte comando (onde `<USER>` deve ser substituído pelo seu usuário no GitHub):
+Clone o repositório para a sua máquina local usando o comando abaixo, substituindo `<USER>`> pelo seu nome de usuário no GitHub:
 
 ```bash
 git clone https://github.com/<USER>/adote-facil.git
