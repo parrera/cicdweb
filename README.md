@@ -1,17 +1,16 @@
 # Roteiro sobre configuração e uso de um pipeline CI/CD
 
-Este repositório apresenta um roteiro prático para configurar e utilizar um pipeline de **Integração Contínua e Delivery Contínuo (CI/CD)**. O objetivo é simular práticas reais de DevOps no contexto de desenvolvimento web, utilizando o GitHub Actions.
+Este repositório apresenta um roteiro prático para configurar e utilizar um pipeline de **Integração e Entrega Contínua (CI/CD)**. O objetivo é simular estas práticas de DevOps no contexto de desenvolvimento web, utilizando o GitHub Actions (GHA).
 
-O GitHub Actions permite automatizar fluxos de trabalho (workflows) como testes, builds e deploys. Neste tutorial, aplicaremos esses princípios em um cenário semelhante ao de um ambiente de produção.
+O GHA permite automatizar fluxos de trabalho (workflows) como testes, builds e deploys. Neste tutorial, aplicaremos esses princípios em um cenário semelhante ao de um ambiente de produção.
 
-**Contexto**:  Você faz parte da equipe de desenvolvimento web de uma ONG dedicada ao cuidado animal, responsável pelo sistema Adote Fácil, uma plataforma online para adoção de animais. A equipe é distribuída geograficamente e composta por profissionais especializados em diferentes áreas do projeto web, cada um responsável por módulos distintos do sistema. Diante disso, você identificou que a adoção de metodologias de integração e delivery contínuo (CI/CD) neste projeto trará diversas melhorias, como:
-- Automatizar tarefas manuais, como a análise e o merge de Pull Requests, liberando os colaboradores para outras atividades de maior valor;
-- Elevar a qualidade e o padrão do código produzido;
-- Estimular a criação e atualização constante da documentação técnica;
-- Facilitar a coleta rápida e eficiente de feedbacks dos usuários;
-- E outras vantagens relevantes para o ciclo de desenvolvimento.
-
-Com base nesses benefícios, a equipe elaborou um guia detalhado para a instalação de um ambiente focado na implementação dessas práticas de CI/CD, visando otimizar o fluxo de trabalho e garantir entregas mais ágeis e seguras.
+**Contexto**:  Você faz parte da equipe de desenvolvimento web de uma ONG dedicada ao cuidado animal, responsável pelo sistema Adote Fácil, uma plataforma online para adoção de animais. A equipe é distribuída geograficamente e composta por profissionais especializados em diferentes áreas do projeto web, cada um responsável por módulos distintos do sistema. Diante disso, você identificou que a adoção de metodologias de integração e entrega contínua (CI/CD) neste projeto trará diversas melhorias, como:
+- Automatizar tarefas manuais, como a análise de Pull Requests, liberando os colaboradores para outras atividades de maior valor.
+- Elevar a qualidade e o padrão do código produzido.
+- Estimular a criação e atualização constante da documentação técnica.
+- Facilitar a coleta rápida e eficiente de feedbacks dos usuários.
+  
+Com base nesses benefícios, a equipe elaborou um guia detalhado para a instalação de um ambiente focado na implementação dessas práticas, visando otimizar o fluxo de trabalho e garantir entregas confiáveis.
 
 ## Tarefa #1: Configurar o GitHub Actions
 #### Passo 1
@@ -64,9 +63,11 @@ git clone https://github.com/<USER>/adote-facil.git
 
 Em seguida, dentro do diretório do repositório que você clonou, crie o arquivo `.github/workflows/experimento-ci-cd.yml` com o conteúdo fornecido abaixo. Para isso, primeiro crie os diretórios `.github` e, dentro dele, o diretório `workflows`, e então salve o arquivo `experimento-ci-cd.yml` nessa última pasta. 
 
-A seguir, mostramos como criar as pastas e o arquivo tanto no Windows quanto no Linux. O conteúdo que deve ser inserido no arquivo **experimento-ci-cd.yml** está logo abaixo.
+A seguir, mostramos como criar diretórios e o arquivo tanto no Windows quanto no GNU/Linux. O conteúdo que deve ser inserido no arquivo **experimento-ci-cd.yml** está logo abaixo.
 
-**Linux**: você pode usar os comandos `mkdir` para criar os diretórios, `touch` para criar o arquivo, e outros comandos como `cd`, `ls` e `mv` para navegar e manipular os arquivos. Alternativamente, pode usar a interface gráfica (GUI) do seu sistema para criar as pastas e o arquivo.
+**GNU/Linux**: 
+
+Você pode usar os comandos `mkdir` para criar os diretórios, `touch` para criar o arquivo, e outros comandos como `cd`, `ls` e `mv` para navegar e manipular os arquivos. Alternativamente, pode usar a interface gráfica (GUI) do seu sistema para criar os diretórios e o arquivo.
 
 ```bash
 # Entre no diretório do repositório clonado
@@ -205,7 +206,7 @@ jobs:
           path: adote-facil-projeto.zip  # Caminho do arquivo que será enviado
 ```
 
-Esse arquivo configura o GitHub Actions (GHA) para ser executado sempre que um evento do tipo `pull_request` for direcionado para a branch principal (`main`) do repositório. O workflow está dividido em três jobs, que representam as etapas da automação:
+Esse arquivo configura o GHA para ser executado sempre que um evento do tipo `pull_request` for direcionado para a branch principal (`main`) do repositório. O workflow está dividido em três jobs, que representam as etapas da automação:
 
 - **test**: executa os testes do sistema; 
 - **build**: realiza o processo de compilação do projeto;
@@ -223,7 +224,7 @@ git push origin main
 
 ## Tarefa #2: Configurar GitHub Secrets
 
-Em muitos projetos, é comum utilizar variáveis sensíveis — como senhas, tokens e chaves de acesso — que não devem ser incluídas diretamente no código por questões de segurança. Para lidar com isso, o GitHub Actions oferece o recurso chamado *Secrets*, que permite armazenar variáveis de ambiente de forma criptografada e segura.
+Em muitos projetos, é comum utilizar variáveis sensíveis — como senhas, tokens e chaves de acesso — que não devem ser incluídas diretamente no código por questões de segurança. Para lidar com isso, o GHA oferece o recurso chamado *Secrets*, que permite armazenar variáveis de ambiente de forma criptografada e segura.
 
 A seguir, vamos configurar os Secrets para armazenar as informações de conexão com o banco de dados:
 
@@ -283,7 +284,7 @@ git push origin bug
 
 #### Passo 3
 
-Em seguida, crie um Pull Request (PR) com suas modificações. Para isso, acesse no navegador a seguinte URL, substituindo `<USER>` pelo seu nome de usuário no GitHub: `https://github.com/<USER>/adote-facil/compare/main...bug`.
+Em seguida, crie um PR com suas modificações. Para isso, acesse no navegador a seguinte URL, substituindo `<USER>` pelo seu nome de usuário no GitHub: `https://github.com/<USER>/adote-facil/compare/main...bug`.
 
 Nessa página, revise as alterações feitas. Após a verificação, clique no botão Create pull request. Na janela que abrir, adicione uma breve descrição do PR e confirme a criação clicando novamente em **Create pull request**.
 
@@ -296,7 +297,7 @@ Em resumo, o servidor de CI/CD detectou automaticamente um problema no código e
 ![image](https://github.com/user-attachments/assets/b2669050-3b83-4f00-9cf4-3410e451ab84)
 
 
-## Tarefa #4: Criando um Pull Request (PR) com a correção
+## Tarefa #4: Criando um PR com a correção
 
 Vamos restaurar o arquivo ao seu estado original. Para isso, descomente a linha 92 e remova a linha 93. Assim, ao criar um novo PR, os testes serão executados com sucesso, sem apresentar falhas.
 
@@ -310,7 +311,7 @@ git push origin fixture
 ```
 Caso solicitado, informe seu nome de usuário e o token que criamos na *Tarefa 1* para autenticação.
 
-Em seguida, crie novamente um novo Pull Request (PR) com a correção. Para isso, acesse no navegador a seguinte URL, substituindo <USER> pelo seu nome de usuário no GitHub: `https://github.com/<USER>/adote-facil/compare/main...fixture`.
+Em seguida, crie novamente um novo PR com a correção. Para isso, acesse no navegador a seguinte URL, substituindo <USER> pelo seu nome de usuário no GitHub: `https://github.com/<USER>/adote-facil/compare/main...fixture`.
 
 ![image](https://github.com/user-attachments/assets/db547d8a-a3ee-4a3c-81ad-69aa76ebac2a)
 
@@ -320,6 +321,6 @@ Você pode acompanhar o andamento do pipeline acessando a aba **Actions** do rep
 
 ![image](https://github.com/user-attachments/assets/3b7ba313-04c5-415f-8097-946cb7f5a5c8)
 
-Após a criação do PR, o GitHub Actions iniciará automaticamente o pipeline, que executará os testes, realizará o build e gerará um arquivo **.zip** do projeto. Ao finalizar, o arquivo **.zip** estará disponível para download.
+Após a criação do PR, o GHA iniciará automaticamente o pipeline, que executará os testes, realizará o build e gerará um arquivo **.zip** do projeto. Ao finalizar, o arquivo **.zip** estará disponível para download.
 
 # FIM
