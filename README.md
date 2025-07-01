@@ -238,7 +238,7 @@ Acesse o seu repositório adote-facil no GitHub, clique na aba Settings (configu
 
 #### Passo 2
 
-Crie dois segredos (secrets) com os seguintes valores:
+Crie dois segredos (repository secrets) com os seguintes valores:
 
 1. **POSTGRES_USER**
    - **Name**: `POSTGRES_USER`
